@@ -474,41 +474,19 @@ h6 {
   overflow: hidden;
 }
 
-.hero-media img,
-.hero-media .hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 45%;
-}
-
 .hero-media .hero-poster,
 .hero-media .hero-video {
   position: absolute;
   inset: 0;
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .hero-media .hero-video {
   pointer-events: none;
-  /* Grayscale so skin tone / race aren't readable; zoom into timber + gloves */
-  filter: grayscale(1) contrast(1.05);
-  object-fit: cover;
-  object-position: 28% 58%;
-  transform: scale(1.45);
-  transform-origin: 30% 55%;
-  opacity: 0;
-}
-
-.hero-media .hero-video.is-playing {
-  opacity: 1;
-}
-
-.hero-media .hero-poster {
-  filter: grayscale(1) contrast(1.05);
-  object-position: 28% 58%;
-  transform: scale(1.45);
-  transform-origin: 30% 55%;
 }
 
 @media (prefers-reduced-motion: reduce) {

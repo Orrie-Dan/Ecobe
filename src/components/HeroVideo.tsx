@@ -1,19 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-type Props = {
-  src: string;
-  poster: string;
-  alt: string;
-};
+const POSTER = "/images/hero-video.jpg";
+const SRC = "/videos/hero-workshop.mp4";
 
-function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-export default function HeroVideo({ src, poster, alt }: Props) {
+export default function HeroVideo({ alt }: { alt: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-  const [reduceMotion] = useState(prefersReducedMotion);
+  const [reduceMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
 
   useEffect(() => {
     const video = videoRef.current;
@@ -23,30 +17,30 @@ export default function HeroVideo({ src, poster, alt }: Props) {
     video.defaultMuted = true;
     video.playsInline = true;
     video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("playsinline", "true");
 
     const kick = () => {
-      if (document.visibilityState === "hidden") return;
       video.muted = true;
       const attempt = video.play();
       if (attempt) void attempt.catch(() => {});
     };
 
-    const onPlaying = () => setPlaying(true);
     const onVisible = () => {
       if (document.visibilityState === "visible") kick();
     };
 
-    video.addEventListener("playing", onPlaying);
     video.addEventListener("canplay", kick);
     video.addEventListener("loadeddata", kick);
     document.addEventListener("visibilitychange", onVisible);
     window.addEventListener("pageshow", kick);
+    window.addEventListener("touchstart", kick, { passive: true });
+    window.addEventListener("click", kick);
 
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) kick();
       },
-      { threshold: 0.15 },
+      { threshold: 0.1 },
     );
     io.observe(video);
 
@@ -57,7 +51,7 @@ export default function HeroVideo({ src, poster, alt }: Props) {
         window.clearInterval(retry);
         return;
       }
-      if (performance.now() - started > 8000) {
+      if (performance.now() - started > 12000) {
         window.clearInterval(retry);
         return;
       }
@@ -67,32 +61,32 @@ export default function HeroVideo({ src, poster, alt }: Props) {
     return () => {
       window.clearInterval(retry);
       io.disconnect();
-      video.removeEventListener("playing", onPlaying);
       video.removeEventListener("canplay", kick);
       video.removeEventListener("loadeddata", kick);
       document.removeEventListener("visibilitychange", onVisible);
       window.removeEventListener("pageshow", kick);
+      window.removeEventListener("touchstart", kick);
+      window.removeEventListener("click", kick);
       video.pause();
     };
-  }, [src, reduceMotion]);
+  }, [reduceMotion]);
+
+  if (reduceMotion) {
+    return <img className="hero-poster" src={POSTER} alt={alt} />;
+  }
 
   return (
-    <>
-      <img className="hero-poster" src={poster} alt="" aria-hidden="true" />
-      {reduceMotion ? null : (
-        <video
-          ref={videoRef}
-          className={`hero-video${playing ? " is-playing" : ""}`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster={poster}
-          aria-label={alt}
-          src={src}
-        />
-      )}
-    </>
+    <video
+      ref={videoRef}
+      className="hero-video"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      poster={POSTER}
+      aria-label={alt}
+      src={SRC}
+    />
   );
 }

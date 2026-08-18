@@ -15,11 +15,7 @@ export default function Index() {
     <>
       <section className="hero">
         <div className="hero-media">
-          <HeroVideo
-            src="/videos/hero-workshop.mp4"
-            poster="/images/hero.jpg"
-            alt={t.home.heroAlt}
-          />
+          <HeroVideo alt={t.home.heroAlt} />
         </div>
         <h1 className="hero-title">
           ECOBE
