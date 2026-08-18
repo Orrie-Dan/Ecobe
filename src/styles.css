@@ -497,10 +497,18 @@ h6 {
   object-position: 28% 58%;
   transform: scale(1.45);
   transform-origin: 30% 55%;
+  opacity: 0;
+}
+
+.hero-media .hero-video.is-playing {
+  opacity: 1;
 }
 
 .hero-media .hero-poster {
   filter: grayscale(1) contrast(1.05);
+  object-position: 28% 58%;
+  transform: scale(1.45);
+  transform-origin: 30% 55%;
 }
 
 @media (prefers-reduced-motion: reduce) {

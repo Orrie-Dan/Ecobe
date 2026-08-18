@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import HeroVideo from "../components/HeroVideo";
 import Reasons from "../components/Reasons";
 import Reveal from "../components/Reveal";
 import SketchBoard from "../components/SketchBoard";
@@ -14,24 +15,11 @@ export default function Index() {
     <>
       <section className="hero">
         <div className="hero-media">
-          <img
-            className="hero-poster"
-            src="/images/hero.jpg"
-            alt=""
-            aria-hidden="true"
-          />
-          <video
-            className="hero-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+          <HeroVideo
+            src="/videos/hero-workshop.mp4"
             poster="/images/hero.jpg"
-            aria-label={t.home.heroAlt}
-          >
-            <source src="/videos/hero-workshop.mp4" type="video/mp4" />
-          </video>
+            alt={t.home.heroAlt}
+          />
         </div>
         <h1 className="hero-title">
           ECOBE
