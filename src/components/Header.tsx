@@ -41,11 +41,9 @@ export default function Header() {
   return (
     <>
       <header className={`header${away && !open ? " is-away" : ""}${open ? " is-open" : ""}`}>
-        <Link to="/" className="brand" onClick={() => setOpen(false)}>
+        <Link to="/" className="brand" onClick={() => setOpen(false)} aria-label="ECOBE Trading Company">
           <span className="brand-lines">
-            <span>ECOBE</span>
-            <span>Trading</span>
-            <span className="is-serif">Company</span>
+            <img className="brand-logo" src="/images/logo.png" alt="" width={825} height={416} />
           </span>
         </Link>
         <div className="header-end">

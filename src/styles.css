@@ -216,8 +216,14 @@ h6 {
   letter-spacing: -0.02em;
   font-weight: 400;
   overflow: hidden;
-  width: 103rem;
+  width: 140rem;
   flex-shrink: 0;
+}
+
+.brand-logo {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .brand-lines,
@@ -339,7 +345,7 @@ h6 {
     padding: 10rem var(--pad) 0;
   }
   .brand {
-    font-size: 14rem;
+    width: 110rem;
   }
   .header-end {
     gap: 1.2em;
@@ -483,6 +489,7 @@ h6 {
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
+  filter: grayscale(100%);
 }
 
 .hero-media .hero-video {
@@ -501,6 +508,13 @@ h6 {
   padding: 38rem var(--pad);
   max-width: 700rem;
   color: #fff;
+  margin: 0;
+}
+
+.hero-logo {
+  display: block;
+  width: min(100%, 520rem);
+  height: auto;
 }
 
 .hero-title em {
@@ -515,6 +529,9 @@ h6 {
   .hero-title {
     padding: 20rem var(--pad);
     max-width: 100%;
+  }
+  .hero-logo {
+    width: min(100%, 280rem);
   }
 }
 
