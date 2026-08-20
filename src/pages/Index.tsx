@@ -18,13 +18,9 @@ export default function Index() {
           <HeroVideo alt={t.home.heroAlt} />
         </div>
         <h1 className="hero-title">
-          <img
-            className="hero-logo"
-            src="/images/logo.png"
-            alt="ECOBE Trading Company Ltd"
-            width={825}
-            height={416}
-          />
+          ECOBE
+          <br />
+          Trading <em>Company</em>
         </h1>
       </section>
 

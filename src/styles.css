@@ -508,13 +508,6 @@ h6 {
   padding: 38rem var(--pad);
   max-width: 700rem;
   color: #fff;
-  margin: 0;
-}
-
-.hero-logo {
-  display: block;
-  width: min(100%, 520rem);
-  height: auto;
 }
 
 .hero-title em {
@@ -529,9 +522,6 @@ h6 {
   .hero-title {
     padding: 20rem var(--pad);
     max-width: 100%;
-  }
-  .hero-logo {
-    width: min(100%, 280rem);
   }
 }
 
